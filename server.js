@@ -1,8 +1,13 @@
 import fastify from "fastify";
 import { DatabasePostgres } from "./database-postgres.js";
+import fastifyCors from "@fastify/cors";
 
 const server = fastify();
 const database = new DatabasePostgres();
+
+server.register(fastifyCors, {
+    origin: "*",
+});
 
 server.post("/videos", (request, reply) => {
     const { title, description, duration } = request.body;
