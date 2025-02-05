@@ -6,7 +6,9 @@ const server = fastify();
 const database = new DatabasePostgres();
 
 server.register(fastifyCors, {
-    origin: "*",
+    origin: ["http://localhost:5173"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
 });
 
 server.post("/videos", (request, reply) => {
